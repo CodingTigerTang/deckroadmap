@@ -1,12 +1,12 @@
 Package: deckroadmap
 Title: Roadmap Footers for Reveal.js Slides in Quarto and R Markdown
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Tiger", "Tang", email = "tigerloveslobsters@gmail.com", role = c("aut", "cre"))
 Description: Adds section-aware roadmap footers to Reveal.js slide decks
     created with Quarto or R Markdown. The footer highlights completed,
-    current, and upcoming sections as slides advance. Designed for
-    Reveal.js-based HTML presentations.
+    current, and upcoming sections as slides advance. Supports multiple
+    visual styles with configurable colors, size, and positioning options.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,6 +17,7 @@ Suggests:
     knitr,
     rmarkdown,
     revealjs,
-    quarto
+    quarto,
+    testthat
 URL: https://github.com/CodingTigerTang/deckroadmap
 BugReports: https://github.com/CodingTigerTang/deckroadmap/issues
