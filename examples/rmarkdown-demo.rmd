@@ -1,0 +1,51 @@
+---
+title: "deckroadmap Demo"
+output:
+  revealjs::revealjs_presentation
+---
+
+```{r roadmap, echo=FALSE}
+library(deckroadmap)
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"), style = "pill")
+```
+
+## Welcome {data-roadmap="Intro"}
+
+This is the opening slide.
+
+## Why this matters {data-roadmap="Intro"}
+
+Some framing content.
+
+## The problem {data-roadmap="Problem"}
+
+Describe the challenge here.
+
+## What changed {data-roadmap="Problem"}
+
+More problem context.
+
+## Analysis overview {data-roadmap="Analysis"}
+
+Start the analysis section.
+
+## Key findings {data-roadmap="Analysis"}
+
+Show results here.
+
+## Recommendation {data-roadmap="Recommendation"}
+
+Explain the recommendation.
+
+## Tradeoffs {data-roadmap="Recommendation"}
+
+Discuss caveats and decisions.
+
+## Next steps {data-roadmap="Next Steps"}
+
+End with the action plan.
+
+## Q&A {data-roadmap="Next Steps"}
+
+Questions.
