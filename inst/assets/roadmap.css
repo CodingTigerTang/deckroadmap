@@ -39,11 +39,11 @@
 }
 
 .style-pill .roadmap-item.done {
-  color: var(--deckroadmap-done-bg-color, #4a4a4a);
+  color: var(--deckroadmap-done-color, #4a4a4a);
 }
 
 .style-pill .roadmap-item.active {
-  color: var(--deckroadmap-active-bg-color, #111111);
+  color: var(--deckroadmap-active-color, #111111);
   font-weight: 800;
 }
 
@@ -65,11 +65,11 @@
 }
 
 .style-minimal .roadmap-item.done {
-  color: var(--deckroadmap-done-bg-color, #4a4a4a);
+  color: var(--deckroadmap-done-color, #4a4a4a);
 }
 
 .style-minimal .roadmap-item.active {
-  color: var(--deckroadmap-active-bg-color, #111111);
+  color: var(--deckroadmap-active-color, #111111);
   font-weight: 800;
 }
 

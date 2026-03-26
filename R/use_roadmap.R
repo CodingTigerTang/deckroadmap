@@ -23,12 +23,12 @@ use_roadmap <- function(
     style = c("pill", "minimal", "progress"),
     font_size = "16px",
     bottom = "16px",
-    active_color = "#ffffff",
-    done_color = "#ffffff",
-    todo_color = "#3f4a5a",
-    active_bg_color = "#111111",
-    done_bg_color = "#4a4a4a",
-    todo_bg_color = "#e9edf3"
+    active_color = NULL,
+    done_color = NULL,
+    todo_color = NULL,
+    active_bg_color = NULL,
+    done_bg_color = NULL,
+    todo_bg_color = NULL
 ) {
   stopifnot(is.character(sections), length(sections) >= 2)
   
