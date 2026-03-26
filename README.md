@@ -1,5 +1,5 @@
 
-# deckroadmap
+# deckroadmap<img src="man/figures/deckroadmap-logo.png" alt="deckroadmap package logo" align="right" height="150"/>
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
