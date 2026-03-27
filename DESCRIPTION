@@ -19,5 +19,5 @@ Suggests:
     revealjs,
     quarto,
     testthat
-URL: https://github.com/CodingTigerTang/deckroadmap
+URL: https://github.com/CodingTigerTang/deckroadmap, https://codingtigertang.github.io/deckroadmap/
 BugReports: https://github.com/CodingTigerTang/deckroadmap/issues
