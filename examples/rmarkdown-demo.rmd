@@ -7,7 +7,9 @@ output:
 ```{r roadmap, echo=FALSE}
 library(deckroadmap)
 use_roadmap(
-  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"), style = "pill")
+    c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+    style = "progress"
+)
 ```
 
 ## Welcome {data-roadmap="Intro"}
