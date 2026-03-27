@@ -1,0 +1,25 @@
+url: https://codingtigertang.github.io/deckroadmap/
+template:
+  bootstrap: 5
+home:
+  title: deckroadmap
+  description: Add section-aware roadmap footers to Reveal.js slides in Quarto and
+    R Markdown.
+navbar:
+  structure:
+    left:
+    - intro
+    - reference
+    - articles
+    - news
+    right:
+    - website
+    - github
+  components:
+    website:
+      text: Tiger Tang
+      href: https://tigertang.org
+    github:
+      icon: fa-github
+      href: https://github.com/CodingTigerTang/deckroadmap
+
