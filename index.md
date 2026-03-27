@@ -11,7 +11,8 @@ currently in, and what comes next. The package supports multiple
 built-in styles, including `pill`, `minimal`, and `progress`, along with
 options for colors, size, and positioning.
 
-![](reference/figures/preview-all.png)
+![](reference/figures/preview-all.png) Read the background story and
+design notes in the [blog post](https://tigertang.org/deckroadmap/).
 
 ## Installation
 
