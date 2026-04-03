@@ -39,6 +39,14 @@ preview_roadmap <- function(
   if (is.na(current_index)) {
     stop("`current` must match one of the values in `sections`.")
   }
+  if (style == "progress") {
+    if (is.null(active_color)) active_color <- "#ffffff"
+    if (is.null(done_color)) done_color <- "#ffffff"
+    if (is.null(todo_color)) todo_color <- "#3f4a5a"
+    if (is.null(active_bg_color)) active_bg_color <- "#111111"
+    if (is.null(done_bg_color)) done_bg_color <- "#4a4a4a"
+    if (is.null(todo_bg_color)) todo_bg_color <- "#e9edf3"
+  }
   
   footer <- htmltools::tags$div(
     class = paste("roadmap-footer", paste0("style-", style)),
