@@ -3,6 +3,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/CodingTigerTang/deckroadmap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CodingTigerTang/deckroadmap/actions/workflows/R-CMD-check.yaml)
+[![R-Universe](https://codingtigertang.r-universe.dev/deckroadmap/badges/version)](https://codingtigertang.r-universe.dev/deckroadmap)
 
 `deckroadmap` adds PowerPoint-style roadmap footers to Quarto and R
 Markdown Reveal.js slides.
