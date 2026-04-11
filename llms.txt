@@ -199,3 +199,9 @@ use_roadmap(
 - [`use_roadmap()`](https://codingtigertang.github.io/deckroadmap/reference/use_roadmap.md)
   : Add a roadmap footer to Reveal.js slides
 
+# Articles
+
+### All vignettes
+
+- [Getting started with
+  deckroadmap](https://codingtigertang.github.io/deckroadmap/articles/get-started.md):

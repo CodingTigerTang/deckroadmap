@@ -69,3 +69,79 @@ preview_roadmap(
 ## Value
 
 A browsable HTML preview.
+
+## Examples
+
+``` r
+# Preview the default pill style
+preview_roadmap(
+  sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  current = "Analysis"
+)
+
+  
+    Preview: pill style
+    
+      
+        
+          Intro
+        
+        •
+        
+          Problem
+        
+        •
+        
+          Analysis
+        
+        •
+        
+          Recommendation
+        
+        •
+        
+          Next Steps
+        
+      
+    
+  
+
+
+# Preview the progress style with custom colors
+preview_roadmap(
+  sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  current = "Analysis",
+  style = "progress",
+  active_color = "#ffffff",
+  done_color = "#ffffff",
+  todo_color = "#334155",
+  active_bg_color = "#2563eb",
+  done_bg_color = "#475569",
+  todo_bg_color = "#e2e8f0"
+)
+
+  
+    Preview: progress style
+    
+      
+        
+          Intro
+        
+        
+          Problem
+        
+        
+          Analysis
+        
+        
+          Recommendation
+        
+        
+          Next Steps
+        
+      
+    
+  
+
+
+```
