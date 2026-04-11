@@ -7,10 +7,14 @@
 0 errors | 0 warnings | 1 note
 
 ## Resubmission Notes
-This is a resubmission to address the "detritus in temp directory" NOTE found during the Debian pre-test of version 0.1.1.
+This is a resubmission addressing feedback from Uwe Ligges regarding version 0.1.2.
 
-* **Fixed Detritus Issue:** Wrapped examples for `preview_roadmap()` and `use_roadmap()` in `\dontrun{}` blocks. These functions generate HTML tags with dependencies which triggered the creation of temporary Calibre folders during the non-interactive check process.
-* **Spelling:** The noted spelling errors in the DESCRIPTION file ("Roadmap", "js") are intentional technical terms and names of software. These have been added to `inst/WORDLIST` to ensure the check is as clean as possible.
+* **Formatting Fixes:** Added single quotes around software names ('Reveal.js', 'Quarto', and 'R Markdown') in both the Title and Description fields of the DESCRIPTION file as requested.
+* **Version Bump:** Increased version to 0.1.3.
+
+## Prior Resubmission History (v0.1.2)
+* **Fixed Detritus Issue:** Wrapped examples for `preview_roadmap()` and `use_roadmap()` in `\dontrun{}` blocks. These functions generate HTML tags with dependencies which previously triggered the creation of temporary Calibre folders during the non-interactive check process.
+* **Spelling:** Added technical terms ("Roadmap", "js") to `inst/WORDLIST`.
 
 ## Note on New Submission
 * This is a new submission.
