@@ -8,3 +8,5 @@
 ^\.github$
 ^dev$
 ^examples$
+^doc$
+^Meta$

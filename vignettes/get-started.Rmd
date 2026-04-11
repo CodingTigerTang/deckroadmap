@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Overview
+## Overview
 
 `deckroadmap` adds section-aware roadmap footers to Reveal.js presentations created with Quarto or R Markdown.
 
@@ -28,7 +28,7 @@ This vignette shows:
 - how to switch styles
 - how to preview styles before rendering slides
 
-# Basic idea
+## Basic idea
 
 The workflow has two parts:
 
@@ -47,7 +47,7 @@ use_roadmap(
 
 The function returns an HTML tag with the configuration and dependencies needed for the roadmap footer.
 
-# Using `deckroadmap` in Quarto
+## Using `deckroadmap` in Quarto
 
 In a Quarto Reveal.js document, call `use_roadmap()` in an R chunk near the top of the file.
 
@@ -112,7 +112,7 @@ Questions.
 
 ````
 
-# Using `deckroadmap` in R Markdown
+## Using `deckroadmap` in R Markdown
 
 The same idea works for R Markdown Reveal.js slides.
 
@@ -172,7 +172,7 @@ End with the action plan.
 Questions.
 ````
 
-# Tagging slides
+## Tagging slides
 
 The roadmap depends on slide-level section tags such as:
 
@@ -197,11 +197,11 @@ then valid slide tags include:
 ## Recommendation {data-roadmap="Recommendation"}
 ````
 
-# Built-in styles
+## Built-in styles
 
 `deckroadmap` currently includes three built-in styles.
 
-## Pill
+### Pill
 
 The `pill` style is the default polished floating footer.
 
@@ -212,7 +212,7 @@ use_roadmap(
 )
 ```
 
-## Minimal
+### Minimal
 
 The `minimal` style has less visual weight and works well when you want simpler signposting.
 
@@ -223,7 +223,7 @@ use_roadmap(
 )
 ```
 
-## Progress
+### Progress
 
 The `progress` style emphasizes completed, current, and upcoming sections more strongly.
 
@@ -234,11 +234,11 @@ use_roadmap(
 )
 ```
 
-# Customization
+## Customization
 
 You can customize font size, position, text colors, and, for the progress style, background colors.
 
-## Example: text styling
+### Example: text styling
 
 ```{r}
 use_roadmap(
@@ -252,7 +252,7 @@ use_roadmap(
 )
 ```
 
-## Example: progress colors
+### Example: progress colors
 ```{r}
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
@@ -266,7 +266,7 @@ use_roadmap(
 )
 ```
 
-# Previewing styles
+## Previewing styles
 
 Before rendering a full slide deck, you can preview a roadmap style with `preview_roadmap()`.
 
@@ -280,6 +280,6 @@ preview_roadmap(
 
 This is helpful when experimenting with styles, colors, and section names.
 
-# Summary
+## Summary
 
 `deckroadmap` provides a simple way to add section-aware roadmap footers to Reveal.js slides in Quarto and R Markdown. Define your sections once, tag slides with `data-roadmap`, choose a style, and optionally preview the result before rendering a full deck. This small amount of structure can make it easier for audiences to follow the flow of a presentation.
