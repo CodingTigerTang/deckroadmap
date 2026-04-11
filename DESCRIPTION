@@ -18,7 +18,9 @@ Suggests:
     rmarkdown,
     revealjs,
     quarto,
-    testthat
+    testthat,
+    spelling
 URL: https://github.com/CodingTigerTang/deckroadmap, https://codingtigertang.github.io/deckroadmap/
 BugReports: https://github.com/CodingTigerTang/deckroadmap/issues
 VignetteBuilder: knitr
+Language: en-US
