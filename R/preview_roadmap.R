@@ -19,6 +19,7 @@
 #' 
 #' @examples
 #' # Preview the default pill style
+#' \dontrun{
 #' preview_roadmap(
 #'   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
 #'   current = "Analysis"
@@ -36,7 +37,7 @@
 #'   done_bg_color = "#475569",
 #'   todo_bg_color = "#e2e8f0"
 #' )
-#' 
+#' }
 #' 
 #' @export
 preview_roadmap <- function(

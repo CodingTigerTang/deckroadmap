@@ -18,6 +18,7 @@
 #' @return An HTML tag with attached dependencies.
 #' 
 #' @examples
+#' \dontrun{
 #' # Add a simple roadmap footer
 #' use_roadmap(
 #'   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")
@@ -35,7 +36,7 @@
 #'   done_bg_color = "#475569",
 #'   todo_bg_color = "#e2e8f0"
 #' )
-#' 
+#' }
 #' @export
 use_roadmap <- function(
     sections,

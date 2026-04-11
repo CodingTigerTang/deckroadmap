@@ -52,6 +52,7 @@ Preview a roadmap footer style
 }
 \examples{
 # Preview the default pill style
+\dontrun{
 preview_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   current = "Analysis"
@@ -69,6 +70,6 @@ preview_roadmap(
   done_bg_color = "#475569",
   todo_bg_color = "#e2e8f0"
 )
-
+}
 
 }

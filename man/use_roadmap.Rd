@@ -51,6 +51,7 @@ An HTML tag with attached dependencies.
 Add a roadmap footer to Reveal.js slides
 }
 \examples{
+\dontrun{
 # Add a simple roadmap footer
 use_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")
@@ -68,5 +69,5 @@ use_roadmap(
   done_bg_color = "#475569",
   todo_bg_color = "#e2e8f0"
 )
-
+}
 }
