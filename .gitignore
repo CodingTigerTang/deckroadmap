@@ -6,3 +6,4 @@ docs
 .DS_Store
 **/.DS_Store
 examples/*.html
+inst/doc

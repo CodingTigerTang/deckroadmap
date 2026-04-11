@@ -1,5 +1,5 @@
 ---
-title: "deckroadmap Demo"
+title: "deckroadmap Quarto demo"
 format:
   revealjs:
     theme: default
@@ -10,7 +10,7 @@ library(deckroadmap)
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   style = "progress",
-  active_bg_color = "#87CEEB",
+  active_bg_color = "#87CEEB"
 )
 ```
 
