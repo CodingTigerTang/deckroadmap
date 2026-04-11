@@ -1,0 +1,285 @@
+---
+title: "Getting started with deckroadmap"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with deckroadmap}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+# Overview
+
+`deckroadmap` adds section-aware roadmap footers to Reveal.js presentations created with Quarto or R Markdown.
+
+The goal is simple: help audiences understand where they are in the flow of a presentation. Instead of only knowing how many slides are left, they can see what has been covered, what section is active, and what comes next.
+
+This vignette shows:
+
+- how to add a roadmap footer
+- how to tag slides with section names
+- how to switch styles
+- how to preview styles before rendering slides
+
+# Basic idea
+
+The workflow has two parts:
+
+1. Define the sections of your presentation with `use_roadmap()`
+2. Tag each slide with a matching `data-roadmap` value
+
+A minimal example looks like this:
+
+```{r}
+library(deckroadmap)
+
+use_roadmap(
+  sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")
+)
+```
+
+The function returns an HTML tag with the configuration and dependencies needed for the roadmap footer.
+
+# Using `deckroadmap` in Quarto
+
+In a Quarto Reveal.js document, call `use_roadmap()` in an R chunk near the top of the file.
+
+A minimal example:
+
+````markdown
+---
+title: "deckroadmap Quarto demo"
+format:
+  revealjs:
+    theme: default
+---
+
+```{r}
+library(deckroadmap)
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  style = "progress",
+  active_bg_color = "#87CEEB"
+)
+```
+
+## Welcome {data-roadmap="Intro"}
+
+This is the opening slide.
+
+## Why this matters {data-roadmap="Intro"}
+
+Some framing content.
+
+## The problem {data-roadmap="Problem"}
+
+Describe the challenge here.
+
+## What changed {data-roadmap="Problem"}
+
+More problem context.
+
+## Analysis overview {data-roadmap="Analysis"}
+
+Start the analysis section.
+
+## Key findings {data-roadmap="Analysis"}
+
+Show results here.
+
+## Recommendation {data-roadmap="Recommendation"}
+
+Explain the recommendation.
+
+## Tradeoffs {data-roadmap="Recommendation"}
+
+Discuss caveats and decisions.
+
+## Next steps {data-roadmap="Next Steps"}
+
+End with the action plan.
+
+## Q&A {data-roadmap="Next Steps"}
+
+Questions.
+
+````
+
+# Using `deckroadmap` in R Markdown
+
+The same idea works for R Markdown Reveal.js slides.
+
+````markdown
+---
+title: "deckroadmap R Markdown demo"
+output:
+  revealjs::revealjs_presentation
+---
+
+```{r roadmap, echo=FALSE}
+library(deckroadmap)
+use_roadmap(
+    c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+    style = "progress"
+)
+```
+
+## Welcome {data-roadmap="Intro"}
+
+This is the opening slide.
+
+## Why this matters {data-roadmap="Intro"}
+
+Some framing content.
+
+## The problem {data-roadmap="Problem"}
+
+Describe the challenge here.
+
+## What changed {data-roadmap="Problem"}
+
+More problem context.
+
+## Analysis overview {data-roadmap="Analysis"}
+
+Start the analysis section.
+
+## Key findings {data-roadmap="Analysis"}
+
+Show results here.
+
+## Recommendation {data-roadmap="Recommendation"}
+
+Explain the recommendation.
+
+## Tradeoffs {data-roadmap="Recommendation"}
+
+Discuss caveats and decisions.
+
+## Next steps {data-roadmap="Next Steps"}
+
+End with the action plan.
+
+## Q&A {data-roadmap="Next Steps"}
+
+Questions.
+````
+
+# Tagging slides
+
+The roadmap depends on slide-level section tags such as:
+
+````markdown
+## Analysis overview {data-roadmap="Analysis"}
+````
+
+The values used in `data-roadmap` should match the section names passed to `use_roadmap()`.
+
+For example, if the roadmap is defined as:
+```{r}
+use_roadmap(
+  c("Intro", "Analysis", "Recommendation")
+)
+```
+
+then valid slide tags include:
+
+````markdown
+## Welcome {data-roadmap="Intro"}
+## Analysis overview {data-roadmap="Analysis"}
+## Recommendation {data-roadmap="Recommendation"}
+````
+
+# Built-in styles
+
+`deckroadmap` currently includes three built-in styles.
+
+## Pill
+
+The `pill` style is the default polished floating footer.
+
+```{r}
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  style = "pill"
+)
+```
+
+## Minimal
+
+The `minimal` style has less visual weight and works well when you want simpler signposting.
+
+```{r}
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  style = "minimal"
+)
+```
+
+## Progress
+
+The `progress` style emphasizes completed, current, and upcoming sections more strongly.
+
+```{r}
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  style = "progress"
+)
+```
+
+# Customization
+
+You can customize font size, position, text colors, and, for the progress style, background colors.
+
+## Example: text styling
+
+```{r}
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  style = "pill",
+  font_size = "14px",
+  bottom = "12px",
+  active_color = "#2563eb",
+  done_color = "#374151",
+  todo_color = "#9ca3af"
+)
+```
+
+## Example: progress colors
+```{r}
+use_roadmap(
+  c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  style = "progress",
+  active_color = "#ffffff",
+  done_color = "#ffffff",
+  todo_color = "#334155",
+  active_bg_color = "#2563eb",
+  done_bg_color = "#475569",
+  todo_bg_color = "#e2e8f0"
+)
+```
+
+# Previewing styles
+
+Before rendering a full slide deck, you can preview a roadmap style with `preview_roadmap()`.
+
+```{r}
+preview_roadmap(
+  sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  current = "Analysis",
+  style = "progress"
+)
+```
+
+This is helpful when experimenting with styles, colors, and section names.
+
+# Summary
+
+`deckroadmap` provides a simple way to add section-aware roadmap footers to Reveal.js slides in Quarto and R Markdown. Define your sections once, tag slides with `data-roadmap`, choose a style, and optionally preview the result before rendering a full deck. This small amount of structure can make it easier for audiences to follow the flow of a presentation.

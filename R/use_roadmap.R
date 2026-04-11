@@ -16,6 +16,26 @@
 #'   progress style.
 #'
 #' @return An HTML tag with attached dependencies.
+#' 
+#' @examples
+#' # Add a simple roadmap footer
+#' use_roadmap(
+#'   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")
+#' )
+#'
+#'
+#' # Customize the progress style
+#' use_roadmap(
+#'   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+#'   style = "progress",
+#'   active_color = "#ffffff",
+#'   done_color = "#ffffff",
+#'   todo_color = "#334155",
+#'   active_bg_color = "#2563eb",
+#'   done_bg_color = "#475569",
+#'   todo_bg_color = "#e2e8f0"
+#' )
+#' 
 #' @export
 use_roadmap <- function(
     sections,

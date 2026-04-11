@@ -50,3 +50,25 @@ A browsable HTML preview.
 \description{
 Preview a roadmap footer style
 }
+\examples{
+# Preview the default pill style
+preview_roadmap(
+  sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  current = "Analysis"
+)
+
+# Preview the progress style with custom colors
+preview_roadmap(
+  sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
+  current = "Analysis",
+  style = "progress",
+  active_color = "#ffffff",
+  done_color = "#ffffff",
+  todo_color = "#334155",
+  active_bg_color = "#2563eb",
+  done_bg_color = "#475569",
+  todo_bg_color = "#e2e8f0"
+)
+
+
+}
