@@ -74,7 +74,7 @@ A browsable HTML preview.
 
 ``` r
 # Preview the default pill style
-if (FALSE) { # \dontrun{
+if (interactive()) {
 preview_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   current = "Analysis"
@@ -92,5 +92,5 @@ preview_roadmap(
   done_bg_color = "#475569",
   todo_bg_color = "#e2e8f0"
 )
-} # }
+}
 ```
