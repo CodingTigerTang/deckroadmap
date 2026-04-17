@@ -1,6 +1,6 @@
 Package: deckroadmap
 Title: Roadmap Footers for 'Reveal.js' Slides in 'Quarto' and 'R Markdown'
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: 
     person("Tiger", "Tang", email = "tigerloveslobsters@gmail.com", role = c("aut", "cre"))
 Description: Adds section-aware roadmap footers to 'Reveal.js' slide decks

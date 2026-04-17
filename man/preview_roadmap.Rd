@@ -52,7 +52,7 @@ Preview a roadmap footer style
 }
 \examples{
 # Preview the default pill style
-\dontrun{
+if (interactive()) {
 preview_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   current = "Analysis"

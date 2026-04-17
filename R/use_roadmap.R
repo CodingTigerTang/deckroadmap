@@ -18,7 +18,7 @@
 #' @return An HTML tag with attached dependencies.
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Add a simple roadmap footer
 #' use_roadmap(
 #'   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")

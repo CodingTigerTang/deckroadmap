@@ -51,7 +51,7 @@ An HTML tag with attached dependencies.
 Add a roadmap footer to Reveal.js slides
 }
 \examples{
-\dontrun{
+\donttest{
 # Add a simple roadmap footer
 use_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")
