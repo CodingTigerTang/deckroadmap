@@ -1,5 +1,10 @@
 # deckroadmap news
 
+# deckroadmap 0.1.4
+
+- Initial CRAN release.
+- Added section-aware roadmap footers for 'Reveal.js' slides.
+
 ## deckroadmap 0.1.1
 
 - Added `preview_roadmap()` to preview roadmap styles before rendering slides.

@@ -2,7 +2,8 @@
 # deckroadmap<img src="man/figures/deckroadmap-logo-small.png" alt="deckroadmap package logo" align="right" width="150"/>
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![](https://www.r-pkg.org/badges/version/deckroadmap)](https://cran.r-project.org/package=deckroadmap)
 [![R-CMD-check](https://github.com/CodingTigerTang/deckroadmap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CodingTigerTang/deckroadmap/actions/workflows/R-CMD-check.yaml)
 [![R-Universe](https://codingtigertang.r-universe.dev/deckroadmap/badges/version)](https://codingtigertang.r-universe.dev/deckroadmap)
 
@@ -19,15 +20,17 @@ notes in the [blog post](https://tigertang.org/deckroadmap/).
 
 ## Installation
 
+Install the stable version from **CRAN**:
+
 ``` r
-# install.packages("pak") 
-pak::pak("CodingTigerTang/deckroadmap")
+install.packages("deckroadmap")
 ```
 
-Or with remotes:
+Or install the development version from GitHub:
 
 ``` r
-remotes::install_github("CodingTigerTang/deckroadmap")
+# install.packages("pak")
+pak::pak("CodingTigerTang/deckroadmap")
 ```
 
 ## Why use deckroadmap?
