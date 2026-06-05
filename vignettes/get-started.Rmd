@@ -25,6 +25,8 @@ This vignette shows:
 
 - how to add a roadmap footer
 - how to tag slides with section names
+- how section inheritance works
+- how to hide the roadmap on selected slides
 - how to switch styles
 - how to preview styles before rendering slides
 
@@ -33,7 +35,7 @@ This vignette shows:
 The workflow has two parts:
 
 1. Define the sections of your presentation with `use_roadmap()`
-2. Tag each slide with a matching `data-roadmap` value
+2. Tag slides with matching `data-roadmap` values
 
 A minimal example looks like this:
 
@@ -50,6 +52,8 @@ The function returns an HTML tag with the configuration and dependencies needed 
 ## Using `deckroadmap` in Quarto
 
 In a Quarto Reveal.js document, call `use_roadmap()` in an R chunk near the top of the file.
+
+By default, you only need to tag the first slide of each section. Later slides inherit the most recent `data-roadmap` value unless you explicitly change it.
 
 A minimal example:
 
@@ -74,7 +78,7 @@ use_roadmap(
 
 This is the opening slide.
 
-## Why this matters {data-roadmap="Intro"}
+## Why this matters 
 
 Some framing content.
 
@@ -82,7 +86,7 @@ Some framing content.
 
 Describe the challenge here.
 
-## What changed {data-roadmap="Problem"}
+## What changed 
 
 More problem context.
 
@@ -90,7 +94,7 @@ More problem context.
 
 Start the analysis section.
 
-## Key findings {data-roadmap="Analysis"}
+## Key findings 
 
 Show results here.
 
@@ -106,7 +110,7 @@ Discuss caveats and decisions.
 
 End with the action plan.
 
-## Q&A {data-roadmap="Next Steps"}
+## Q&A 
 
 Questions.
 
@@ -115,6 +119,8 @@ Questions.
 ## Using `deckroadmap` in R Markdown
 
 The same idea works for R Markdown Reveal.js slides.
+
+By default, you only need to tag the first slide of each section. Later slides inherit the most recent `data-roadmap` value unless you explicitly change it.
 
 ````markdown
 ---
@@ -135,7 +141,7 @@ use_roadmap(
 
 This is the opening slide.
 
-## Why this matters {data-roadmap="Intro"}
+## Why this matters 
 
 Some framing content.
 
@@ -143,7 +149,7 @@ Some framing content.
 
 Describe the challenge here.
 
-## What changed {data-roadmap="Problem"}
+## What changed 
 
 More problem context.
 
@@ -151,7 +157,7 @@ More problem context.
 
 Start the analysis section.
 
-## Key findings {data-roadmap="Analysis"}
+## Key findings
 
 Show results here.
 
@@ -159,7 +165,7 @@ Show results here.
 
 Explain the recommendation.
 
-## Tradeoffs {data-roadmap="Recommendation"}
+## Tradeoffs 
 
 Discuss caveats and decisions.
 
@@ -167,7 +173,7 @@ Discuss caveats and decisions.
 
 End with the action plan.
 
-## Q&A {data-roadmap="Next Steps"}
+## Q&A 
 
 Questions.
 ````
@@ -196,6 +202,29 @@ then valid slide tags include:
 ## Analysis overview {data-roadmap="Analysis"}
 ## Recommendation {data-roadmap="Recommendation"}
 ````
+
+## Inheriting section tags
+
+By default, untagged slides inherit the most recent `data-roadmap` value. This makes it easier to tag only the first slide of each section.
+
+For example:
+
+````markdown
+## Intro {data-roadmap="Intro"}
+## More intro content
+## Problem {data-roadmap="Problem"}
+## More problem detail
+````
+In this example, the second slide inherits `Intro`, and the fourth slide inherits `Problem`.
+
+## Roadmap-free slides
+
+To hide the roadmap on a specific slide, use:
+
+````markdown
+## Break slide {data-roadmap="none"}
+````
+This is useful for title slides, divider slides, or transitions where you do not want the roadmap to appear.
 
 ## Built-in styles
 
@@ -282,4 +311,6 @@ This is helpful when experimenting with styles, colors, and section names.
 
 ## Summary
 
-`deckroadmap` provides a simple way to add section-aware roadmap footers to Reveal.js slides in Quarto and R Markdown. Define your sections once, tag slides with `data-roadmap`, choose a style, and optionally preview the result before rendering a full deck. This small amount of structure can make it easier for audiences to follow the flow of a presentation.
+`deckroadmap` provides a simple way to add section-aware roadmap footers to Reveal.js slides in Quarto and R Markdown. Define your sections once, tag slides with `data-roadmap`, choose a style, and optionally preview the result before rendering a full deck. 
+
+By default, untagged slides inherit the most recent section, and `data-roadmap="none"` can be used to hide the roadmap on a specific slide. This small amount of structure can make it easier for audiences to follow the flow of a presentation.
