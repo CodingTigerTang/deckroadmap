@@ -17,6 +17,8 @@ options for colors, size, and positioning.
 
 ![](man/figures/preview-all.png) Read the background story and design
 notes in the [blog post](https://tigertang.org/deckroadmap/).
+Documentation:
+[codingtigertang.github.io/deckroadmap](https://codingtigertang.github.io/deckroadmap/)
 
 ## Installation
 
@@ -42,25 +44,29 @@ pattern to Reveal.js slides in a simple R-friendly way.
 With one function call, you can add a persistent footer that marks:
 
 - completed sections
-
 - the current section
-
 - upcoming sections
+
+## Why not just use the Reveal.js progress bar?
+
+The built-in Reveal.js progress bar shows how far you are through the
+slide deck. `deckroadmap` answers a different question: where are you in
+the structure of the talk?
 
 ## Supported formats
 
 `deckroadmap` currently supports:
 
 - Quarto Revealjs presentations
-
 - R Markdown Revealjs presentations
 
 It is designed for Reveal.js-based HTML slides.
 
 ## Basic usage
 
-Add `use_roadmap()` near the top of your document, then tag each slide
-with a section name using data-roadmap.
+Add `use_roadmap()` near the top of your document, then tag slides with
+`data-roadmap` section names. Untagged slides inherit the most recent
+section by default.
 
 ``` r
 library(deckroadmap)
@@ -85,12 +91,41 @@ Then use matching section labels on your slides, for example:
 ## Next steps {data-roadmap="Next Steps"}
 ```
 
+## Inheriting section tags
+
+By default, untagged slides inherit the most recent `data-roadmap`
+value. This makes it easier to tag only the first slide of each section.
+
+``` markdown
+## Intro {data-roadmap="Intro"}
+
+## More intro content
+
+## Problem {data-roadmap="Problem"}
+
+## More problem detail
+```
+
+In this example, the second slide inherits Intro, and the fourth slide
+inherits Problem.
+
+## Roadmap-free slides
+
+To hide the roadmap on a specific slide, use:
+
+``` markdown
+## Break slide {data-roadmap="none"}
+```
+
+This is useful for title slides, divider slides, or transitions where
+you do not want the roadmap to appear.
+
 ## Full examples
 
 Full working examples are included in the `examples/` folder:
 
-- `examples/quarto-demo.qmd`
-- `examples/rmarkdown-demo.Rmd`
+- [Quarto demo](examples/quarto-demo.qmd)
+- [R Markdown demo](examples/rmarkdown-demo.Rmd)
 
 These show complete Reveal.js slide documents for Quarto and R Markdown.
 
@@ -191,3 +226,13 @@ use_roadmap(
 ```
 
 ![](man/figures/preview-text-styling2.png)
+
+## Notes
+
+- Section names in sections should match the `data-roadmap` values used
+  on slides.
+- Untagged slides inherit the most recent section by default.
+- Use `data-roadmap="none"` to hide the roadmap on a specific slide.
+- `deckroadmap` is designed for Reveal.js slide decks, not PowerPoint
+  output.
+- For best results, keep the section list short and readable.

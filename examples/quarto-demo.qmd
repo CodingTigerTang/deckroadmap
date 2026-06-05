@@ -18,7 +18,7 @@ use_roadmap(
 
 This is the opening slide.
 
-## Why this matters {data-roadmap="Intro"}
+## Why this matters 
 
 Some framing content.
 
@@ -26,7 +26,7 @@ Some framing content.
 
 Describe the challenge here.
 
-## What changed {data-roadmap="Problem"}
+## What changed 
 
 More problem context.
 
@@ -34,7 +34,7 @@ More problem context.
 
 Start the analysis section.
 
-## Key findings {data-roadmap="Analysis"}
+## Key findings 
 
 Show results here.
 
@@ -50,6 +50,6 @@ Discuss caveats and decisions.
 
 End with the action plan.
 
-## Q&A {data-roadmap="Next Steps"}
+## Q&A {data-roadmap="none"}
 
 Questions.

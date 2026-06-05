@@ -15,7 +15,8 @@ use_roadmap(
   todo_color = NULL,
   active_bg_color = NULL,
   done_bg_color = NULL,
-  todo_bg_color = NULL
+  todo_bg_color = NULL,
+  inherit_tags = TRUE
 )
 }
 \arguments{
@@ -43,6 +44,10 @@ progress style.}
 
 \item{todo_bg_color}{CSS background color for upcoming sections in
 progress style.}
+
+\item{inherit_tags}{Logical; if \code{TRUE}, untagged slides inherit the most
+recent \code{data-roadmap} value. Use \code{data-roadmap="none"} on a slide to hide
+the roadmap entirely for that slide.}
 }
 \value{
 An HTML tag with attached dependencies.

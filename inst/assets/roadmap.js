@@ -14,8 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function getStyleName() {
     const config = getConfig();
     if (!config) return "pill";
-
     return config.getAttribute("data-style") || "pill";
+  }
+
+  function getInheritTags() {
+    const config = getConfig();
+    if (!config) return true;
+    return (config.getAttribute("data-inherit-tags") || "true") === "true";
   }
 
   function applyConfigVars(footer) {
@@ -25,12 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const vars = [
       "--deckroadmap-font-size",
       "--deckroadmap-bottom",
-      "--deckroadmap-active-bg-color",
-      "--deckroadmap-done-bg-color",
-      "--deckroadmap-todo-bg-color",
       "--deckroadmap-active-color",
       "--deckroadmap-done-color",
-      "--deckroadmap-todo-color"
+      "--deckroadmap-todo-color",
+      "--deckroadmap-active-bg-color",
+      "--deckroadmap-done-bg-color",
+      "--deckroadmap-todo-bg-color"
     ];
 
     vars.forEach(function (v) {
@@ -69,6 +74,45 @@ document.addEventListener("DOMContentLoaded", function () {
     return document.querySelector(".reveal section.present");
   }
 
+  function getAllSlides() {
+    return Array.from(document.querySelectorAll(".reveal .slides section"));
+  }
+
+function resolveCurrentRoadmap(slide) {
+  if (!slide) return { mode: "neutral", value: null };
+
+  const explicit = slide.getAttribute("data-roadmap");
+
+  if (explicit === "none") {
+    return { mode: "hidden", value: null };
+  }
+
+  if (explicit) {
+    return { mode: "tagged", value: explicit };
+  }
+
+  if (!getInheritTags()) {
+    return { mode: "neutral", value: null };
+  }
+
+  const slides = getAllSlides();
+  const currentIndex = slides.indexOf(slide);
+  if (currentIndex === -1) {
+    return { mode: "neutral", value: null };
+  }
+
+  for (let i = currentIndex - 1; i >= 0; i--) {
+    const tag = slides[i].getAttribute("data-roadmap");
+
+    if (!tag || tag === "none") {
+      continue;
+    }
+
+    return { mode: "inherited", value: tag };
+  }
+
+  return { mode: "neutral", value: null };
+}
   function renderRoadmap() {
     const sections = getSections();
     if (!sections.length) return;
@@ -77,7 +121,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!slide) return;
 
     const footer = ensureFooter();
-    const current = slide.getAttribute("data-roadmap");
+    const resolved = resolveCurrentRoadmap(slide);
+
+    if (resolved.mode === "hidden") {
+      footer.style.display = "none";
+      return;
+    }
+
+    footer.style.display = "";
+    const current = resolved.value;
     const currentIndex = sections.indexOf(current);
 
     footer.innerHTML = "";
@@ -93,11 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (i < currentIndex) item.classList.add("done");
         else if (i === currentIndex) item.classList.add("active");
         else item.classList.add("todo");
-      } else {
-        item.classList.add("todo");
       }
 
-      item.textContent = section;
+      const label = document.createElement("span");
+      label.className = "roadmap-label";
+      label.textContent = section;
+
+      item.appendChild(label);
       footer.appendChild(item);
 
       if (i < sections.length - 1) {
