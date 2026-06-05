@@ -64,6 +64,7 @@ use_roadmap <- function(
     id = id,
     `data-sections` = paste(sections, collapse = "|"),
     `data-style` = style,
+    `data-inherit-tags` = tolower(as.character(inherit_tags)),
     style = paste0(
       "display:none;",
       "--deckroadmap-font-size:", font_size, ";",

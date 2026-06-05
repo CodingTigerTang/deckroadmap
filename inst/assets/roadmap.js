@@ -78,44 +78,41 @@ document.addEventListener("DOMContentLoaded", function () {
     return Array.from(document.querySelectorAll(".reveal .slides section"));
   }
 
-  function resolveCurrentRoadmap(slide) {
-    if (!slide) return { mode: "neutral", value: null };
+function resolveCurrentRoadmap(slide) {
+  if (!slide) return { mode: "neutral", value: null };
 
-    const explicit = slide.getAttribute("data-roadmap");
+  const explicit = slide.getAttribute("data-roadmap");
 
-    if (explicit === "none") {
-      return { mode: "hidden", value: null };
-    }
+  if (explicit === "none") {
+    return { mode: "hidden", value: null };
+  }
 
-    if (explicit) {
-      return { mode: "tagged", value: explicit };
-    }
+  if (explicit) {
+    return { mode: "tagged", value: explicit };
+  }
 
-    if (!getInheritTags()) {
-      return { mode: "neutral", value: null };
-    }
-
-    const slides = getAllSlides();
-    const currentIndex = slides.indexOf(slide);
-    if (currentIndex === -1) {
-      return { mode: "neutral", value: null };
-    }
-
-    for (let i = currentIndex - 1; i >= 0; i--) {
-      const tag = slides[i].getAttribute("data-roadmap");
-
-      if (tag === "none") {
-        return { mode: "hidden", value: null };
-      }
-
-      if (tag) {
-        return { mode: "inherited", value: tag };
-      }
-    }
-
+  if (!getInheritTags()) {
     return { mode: "neutral", value: null };
   }
 
+  const slides = getAllSlides();
+  const currentIndex = slides.indexOf(slide);
+  if (currentIndex === -1) {
+    return { mode: "neutral", value: null };
+  }
+
+  for (let i = currentIndex - 1; i >= 0; i--) {
+    const tag = slides[i].getAttribute("data-roadmap");
+
+    if (!tag || tag === "none") {
+      continue;
+    }
+
+    return { mode: "inherited", value: tag };
+  }
+
+  return { mode: "neutral", value: null };
+}
   function renderRoadmap() {
     const sections = getSections();
     if (!sections.length) return;
