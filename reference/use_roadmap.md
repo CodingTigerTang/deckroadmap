@@ -16,7 +16,8 @@ use_roadmap(
   todo_color = NULL,
   active_bg_color = NULL,
   done_bg_color = NULL,
-  todo_bg_color = NULL
+  todo_bg_color = NULL,
+  inherit_tags = TRUE
 )
 ```
 
@@ -66,6 +67,12 @@ use_roadmap(
 
   CSS background color for upcoming sections in progress style.
 
+- inherit_tags:
+
+  Logical; if `TRUE`, untagged slides inherit the most recent
+  `data-roadmap` value. Use `data-roadmap="none"` on a slide to hide the
+  roadmap entirely for that slide.
+
 ## Value
 
 An HTML tag with attached dependencies.
@@ -78,7 +85,7 @@ An HTML tag with attached dependencies.
 use_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps")
 )
-#> <div id="roadmap-config" data-sections="Intro|Problem|Analysis|Recommendation|Next Steps" data-style="pill" style="display:none;--deckroadmap-font-size:16px;--deckroadmap-bottom:16px;--deckroadmap-active-bg-color:;--deckroadmap-done-bg-color:;--deckroadmap-todo-bg-color:;--deckroadmap-active-color:;--deckroadmap-done-color:;--deckroadmap-todo-color:;"></div>
+#> <div id="roadmap-config" data-sections="Intro|Problem|Analysis|Recommendation|Next Steps" data-style="pill" data-inherit-tags="true" style="display:none;--deckroadmap-font-size:16px;--deckroadmap-bottom:16px;--deckroadmap-active-bg-color:;--deckroadmap-done-bg-color:;--deckroadmap-todo-bg-color:;--deckroadmap-active-color:;--deckroadmap-done-color:;--deckroadmap-todo-color:;"></div>
 
 
 # Customize the progress style
@@ -92,6 +99,6 @@ use_roadmap(
   done_bg_color = "#475569",
   todo_bg_color = "#e2e8f0"
 )
-#> <div id="roadmap-config" data-sections="Intro|Problem|Analysis|Recommendation|Next Steps" data-style="progress" style="display:none;--deckroadmap-font-size:16px;--deckroadmap-bottom:16px;--deckroadmap-active-bg-color:#2563eb;--deckroadmap-done-bg-color:#475569;--deckroadmap-todo-bg-color:#e2e8f0;--deckroadmap-active-color:#ffffff;--deckroadmap-done-color:#ffffff;--deckroadmap-todo-color:#334155;"></div>
+#> <div id="roadmap-config" data-sections="Intro|Problem|Analysis|Recommendation|Next Steps" data-style="progress" data-inherit-tags="true" style="display:none;--deckroadmap-font-size:16px;--deckroadmap-bottom:16px;--deckroadmap-active-bg-color:#2563eb;--deckroadmap-done-bg-color:#475569;--deckroadmap-todo-bg-color:#e2e8f0;--deckroadmap-active-color:#ffffff;--deckroadmap-done-color:#ffffff;--deckroadmap-todo-color:#334155;"></div>
 # }
 ```

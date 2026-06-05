@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Getting started with deckroadmap • deckroadmap</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting started with deckroadmap">
 </head>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">deckroadmap</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.5.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +76,8 @@ what comes next.</p>
 <ul>
 <li>how to add a roadmap footer</li>
 <li>how to tag slides with section names</li>
+<li>how section inheritance works</li>
+<li>how to hide the roadmap on selected slides</li>
 <li>how to switch styles</li>
 <li>how to preview styles before rendering slides</li>
 </ul>
@@ -88,7 +90,7 @@ what comes next.</p>
 <li>Define the sections of your presentation with
 <code><a href="../reference/use_roadmap.html">use_roadmap()</a></code>
 </li>
-<li>Tag each slide with a matching <code>data-roadmap</code> value</li>
+<li>Tag slides with matching <code>data-roadmap</code> values</li>
 </ol>
 <p>A minimal example looks like this:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -105,6 +107,9 @@ dependencies needed for the roadmap footer.</p>
 </h2>
 <p>In a Quarto Reveal.js document, call <code><a href="../reference/use_roadmap.html">use_roadmap()</a></code> in an
 R chunk near the top of the file.</p>
+<p>By default, you only need to tag the first slide of each section.
+Later slides inherit the most recent <code>data-roadmap</code> value
+unless you explicitly change it.</p>
 <p>A minimal example:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> "deckroadmap Quarto demo"</span></span>
@@ -127,7 +132,7 @@ R chunk near the top of the file.</p>
 <span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>This is the opening slide.</span>
 <span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">## Why this matters {data-roadmap="Intro"}</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="fu">## Why this matters </span></span>
 <span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a></span>
 <span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>Some framing content.</span>
 <span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a></span>
@@ -135,7 +140,7 @@ R chunk near the top of the file.</p>
 <span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a></span>
 <span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>Describe the challenge here.</span>
 <span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="fu">## What changed {data-roadmap="Problem"}</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="fu">## What changed </span></span>
 <span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a></span>
 <span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>More problem context.</span>
 <span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a></span>
@@ -143,7 +148,7 @@ R chunk near the top of the file.</p>
 <span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a></span>
 <span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>Start the analysis section.</span>
 <span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="fu">## Key findings {data-roadmap="Analysis"}</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a><span class="fu">## Key findings </span></span>
 <span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a></span>
 <span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a>Show results here.</span>
 <span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a></span>
@@ -159,7 +164,7 @@ R chunk near the top of the file.</p>
 <span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a></span>
 <span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a>End with the action plan.</span>
 <span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a><span class="fu">## Q&amp;A {data-roadmap="Next Steps"}</span></span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a><span class="fu">## Q&amp;A </span></span>
 <span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a></span>
 <span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a>Questions.</span></code></pre></div>
 </div>
@@ -167,6 +172,9 @@ R chunk near the top of the file.</p>
 <h2 id="using-deckroadmap-in-r-markdown">Using <code>deckroadmap</code> in R Markdown<a class="anchor" aria-label="anchor" href="#using-deckroadmap-in-r-markdown"></a>
 </h2>
 <p>The same idea works for R Markdown Reveal.js slides.</p>
+<p>By default, you only need to tag the first slide of each section.
+Later slides inherit the most recent <code>data-roadmap</code> value
+unless you explicitly change it.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> "deckroadmap R Markdown demo"</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="an">output:</span></span>
@@ -179,7 +187,7 @@ R chunk near the top of the file.</p>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>This is the opening slide.</span>
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">## Why this matters {data-roadmap="Intro"}</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">## Why this matters </span></span>
 <span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>Some framing content.</span>
 <span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
@@ -187,7 +195,7 @@ R chunk near the top of the file.</p>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a></span>
 <span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>Describe the challenge here.</span>
 <span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="fu">## What changed {data-roadmap="Problem"}</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="fu">## What changed </span></span>
 <span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a></span>
 <span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>More problem context.</span>
 <span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a></span>
@@ -195,7 +203,7 @@ R chunk near the top of the file.</p>
 <span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a></span>
 <span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>Start the analysis section.</span>
 <span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="fu">## Key findings {data-roadmap="Analysis"}</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="fu">## Key findings</span></span>
 <span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a>Show results here.</span>
 <span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a></span>
@@ -203,7 +211,7 @@ R chunk near the top of the file.</p>
 <span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a></span>
 <span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>Explain the recommendation.</span>
 <span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="fu">## Tradeoffs {data-roadmap="Recommendation"}</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="fu">## Tradeoffs </span></span>
 <span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a></span>
 <span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a>Discuss caveats and decisions.</span>
 <span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a></span>
@@ -211,7 +219,7 @@ R chunk near the top of the file.</p>
 <span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a></span>
 <span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a>End with the action plan.</span>
 <span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="fu">## Q&amp;A {data-roadmap="Next Steps"}</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="fu">## Q&amp;A </span></span>
 <span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a></span>
 <span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a>Questions.</span></code></pre></div>
 </div>
@@ -233,6 +241,28 @@ names passed to <code><a href="../reference/use_roadmap.html">use_roadmap()</a><
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">## Recommendation {data-roadmap="Recommendation"}</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="inheriting-section-tags">Inheriting section tags<a class="anchor" aria-label="anchor" href="#inheriting-section-tags"></a>
+</h2>
+<p>By default, untagged slides inherit the most recent
+<code>data-roadmap</code> value. This makes it easier to tag only the
+first slide of each section.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">## Intro {data-roadmap="Intro"}</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">## More intro content</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">## Problem {data-roadmap="Problem"}</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">## More problem detail</span></span></code></pre></div>
+<p>In this example, the second slide inherits <code>Intro</code>, and
+the fourth slide inherits <code>Problem</code>.</p>
+</div>
+<div class="section level2">
+<h2 id="roadmap-free-slides">Roadmap-free slides<a class="anchor" aria-label="anchor" href="#roadmap-free-slides"></a>
+</h2>
+<p>To hide the roadmap on a specific slide, use:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">## Break slide {data-roadmap="none"}</span></span></code></pre></div>
+<p>This is useful for title slides, divider slides, or transitions where
+you do not want the roadmap to appear.</p>
+</div>
+<div class="section level2">
 <h2 id="built-in-styles">Built-in styles<a class="anchor" aria-label="anchor" href="#built-in-styles"></a>
 </h2>
 <p><code>deckroadmap</code> currently includes three built-in
@@ -242,7 +272,7 @@ styles.</p>
 </h3>
 <p>The <code>pill</code> style is the default polished floating
 footer.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/use_roadmap.html">use_roadmap</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intro"</span>, <span class="st">"Problem"</span>, <span class="st">"Analysis"</span>, <span class="st">"Recommendation"</span>, <span class="st">"Next Steps"</span><span class="op">)</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"pill"</span></span>
@@ -253,7 +283,7 @@ footer.</p>
 </h3>
 <p>The <code>minimal</code> style has less visual weight and works well
 when you want simpler signposting.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/use_roadmap.html">use_roadmap</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intro"</span>, <span class="st">"Problem"</span>, <span class="st">"Analysis"</span>, <span class="st">"Recommendation"</span>, <span class="st">"Next Steps"</span><span class="op">)</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"minimal"</span></span>
@@ -264,7 +294,7 @@ when you want simpler signposting.</p>
 </h3>
 <p>The <code>progress</code> style emphasizes completed, current, and
 upcoming sections more strongly.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/use_roadmap.html">use_roadmap</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intro"</span>, <span class="st">"Problem"</span>, <span class="st">"Analysis"</span>, <span class="st">"Recommendation"</span>, <span class="st">"Next Steps"</span><span class="op">)</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"progress"</span></span>
@@ -279,7 +309,7 @@ progress style, background colors.</p>
 <div class="section level3">
 <h3 id="example-text-styling">Example: text styling<a class="anchor" aria-label="anchor" href="#example-text-styling"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/use_roadmap.html">use_roadmap</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intro"</span>, <span class="st">"Problem"</span>, <span class="st">"Analysis"</span>, <span class="st">"Recommendation"</span>, <span class="st">"Next Steps"</span><span class="op">)</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"pill"</span>,</span>
@@ -293,7 +323,7 @@ progress style, background colors.</p>
 <div class="section level3">
 <h3 id="example-progress-colors">Example: progress colors<a class="anchor" aria-label="anchor" href="#example-progress-colors"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/use_roadmap.html">use_roadmap</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intro"</span>, <span class="st">"Problem"</span>, <span class="st">"Analysis"</span>, <span class="st">"Recommendation"</span>, <span class="st">"Next Steps"</span><span class="op">)</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"progress"</span>,</span>
@@ -311,7 +341,7 @@ progress style, background colors.</p>
 </h2>
 <p>Before rendering a full slide deck, you can preview a roadmap style
 with <code><a href="../reference/preview_roadmap.html">preview_roadmap()</a></code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/preview_roadmap.html">preview_roadmap</a></span><span class="op">(</span></span>
 <span>  sections <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intro"</span>, <span class="st">"Problem"</span>, <span class="st">"Analysis"</span>, <span class="st">"Recommendation"</span>, <span class="st">"Next Steps"</span><span class="op">)</span>,</span>
 <span>  current <span class="op">=</span> <span class="st">"Analysis"</span>,</span>
@@ -326,9 +356,12 @@ names.</p>
 <p><code>deckroadmap</code> provides a simple way to add section-aware
 roadmap footers to Reveal.js slides in Quarto and R Markdown. Define
 your sections once, tag slides with <code>data-roadmap</code>, choose a
-style, and optionally preview the result before rendering a full deck.
-This small amount of structure can make it easier for audiences to
-follow the flow of a presentation.</p>
+style, and optionally preview the result before rendering a full
+deck.</p>
+<p>By default, untagged slides inherit the most recent section, and
+<code>data-roadmap="none"</code> can be used to hide the roadmap on a
+specific slide. This small amount of structure can make it easier for
+audiences to follow the flow of a presentation.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

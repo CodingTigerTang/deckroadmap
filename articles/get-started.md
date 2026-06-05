@@ -14,6 +14,8 @@ This vignette shows:
 
 - how to add a roadmap footer
 - how to tag slides with section names
+- how section inheritance works
+- how to hide the roadmap on selected slides
 - how to switch styles
 - how to preview styles before rendering slides
 
@@ -23,11 +25,12 @@ The workflow has two parts:
 
 1.  Define the sections of your presentation with
     [`use_roadmap()`](https://codingtigertang.github.io/deckroadmap/reference/use_roadmap.md)
-2.  Tag each slide with a matching `data-roadmap` value
+2.  Tag slides with matching `data-roadmap` values
 
 A minimal example looks like this:
 
 ``` r
+
 library(deckroadmap)
 
 use_roadmap(
@@ -43,6 +46,10 @@ needed for the roadmap footer.
 In a Quarto Reveal.js document, call
 [`use_roadmap()`](https://codingtigertang.github.io/deckroadmap/reference/use_roadmap.md)
 in an R chunk near the top of the file.
+
+By default, you only need to tag the first slide of each section. Later
+slides inherit the most recent `data-roadmap` value unless you
+explicitly change it.
 
 A minimal example:
 
@@ -68,7 +75,7 @@ use_roadmap(
 
 This is the opening slide.
 
-## Why this matters {data-roadmap="Intro"}
+## Why this matters 
 
 Some framing content.
 
@@ -76,7 +83,7 @@ Some framing content.
 
 Describe the challenge here.
 
-## What changed {data-roadmap="Problem"}
+## What changed 
 
 More problem context.
 
@@ -84,7 +91,7 @@ More problem context.
 
 Start the analysis section.
 
-## Key findings {data-roadmap="Analysis"}
+## Key findings 
 
 Show results here.
 
@@ -100,7 +107,7 @@ Discuss caveats and decisions.
 
 End with the action plan.
 
-## Q&A {data-roadmap="Next Steps"}
+## Q&A 
 
 Questions.
 ````
@@ -108,6 +115,10 @@ Questions.
 ## Using `deckroadmap` in R Markdown
 
 The same idea works for R Markdown Reveal.js slides.
+
+By default, you only need to tag the first slide of each section. Later
+slides inherit the most recent `data-roadmap` value unless you
+explicitly change it.
 
 ``` markdown
 ---
@@ -122,7 +133,7 @@ output:
 
 This is the opening slide.
 
-## Why this matters {data-roadmap="Intro"}
+## Why this matters 
 
 Some framing content.
 
@@ -130,7 +141,7 @@ Some framing content.
 
 Describe the challenge here.
 
-## What changed {data-roadmap="Problem"}
+## What changed 
 
 More problem context.
 
@@ -138,7 +149,7 @@ More problem context.
 
 Start the analysis section.
 
-## Key findings {data-roadmap="Analysis"}
+## Key findings
 
 Show results here.
 
@@ -146,7 +157,7 @@ Show results here.
 
 Explain the recommendation.
 
-## Tradeoffs {data-roadmap="Recommendation"}
+## Tradeoffs 
 
 Discuss caveats and decisions.
 
@@ -154,7 +165,7 @@ Discuss caveats and decisions.
 
 End with the action plan.
 
-## Q&A {data-roadmap="Next Steps"}
+## Q&A 
 
 Questions.
 ```
@@ -174,6 +185,7 @@ to
 For example, if the roadmap is defined as:
 
 ``` r
+
 use_roadmap(
   c("Intro", "Analysis", "Recommendation")
 )
@@ -187,6 +199,34 @@ then valid slide tags include:
 ## Recommendation {data-roadmap="Recommendation"}
 ```
 
+## Inheriting section tags
+
+By default, untagged slides inherit the most recent `data-roadmap`
+value. This makes it easier to tag only the first slide of each section.
+
+For example:
+
+``` markdown
+## Intro {data-roadmap="Intro"}
+## More intro content
+## Problem {data-roadmap="Problem"}
+## More problem detail
+```
+
+In this example, the second slide inherits `Intro`, and the fourth slide
+inherits `Problem`.
+
+## Roadmap-free slides
+
+To hide the roadmap on a specific slide, use:
+
+``` markdown
+## Break slide {data-roadmap="none"}
+```
+
+This is useful for title slides, divider slides, or transitions where
+you do not want the roadmap to appear.
+
 ## Built-in styles
 
 `deckroadmap` currently includes three built-in styles.
@@ -196,6 +236,7 @@ then valid slide tags include:
 The `pill` style is the default polished floating footer.
 
 ``` r
+
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   style = "pill"
@@ -208,6 +249,7 @@ The `minimal` style has less visual weight and works well when you want
 simpler signposting.
 
 ``` r
+
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   style = "minimal"
@@ -220,6 +262,7 @@ The `progress` style emphasizes completed, current, and upcoming
 sections more strongly.
 
 ``` r
+
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   style = "progress"
@@ -234,6 +277,7 @@ progress style, background colors.
 ### Example: text styling
 
 ``` r
+
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   style = "pill",
@@ -248,6 +292,7 @@ use_roadmap(
 ### Example: progress colors
 
 ``` r
+
 use_roadmap(
   c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   style = "progress",
@@ -266,6 +311,7 @@ Before rendering a full slide deck, you can preview a roadmap style with
 [`preview_roadmap()`](https://codingtigertang.github.io/deckroadmap/reference/preview_roadmap.md).
 
 ``` r
+
 preview_roadmap(
   sections = c("Intro", "Problem", "Analysis", "Recommendation", "Next Steps"),
   current = "Analysis",
@@ -281,5 +327,9 @@ names.
 `deckroadmap` provides a simple way to add section-aware roadmap footers
 to Reveal.js slides in Quarto and R Markdown. Define your sections once,
 tag slides with `data-roadmap`, choose a style, and optionally preview
-the result before rendering a full deck. This small amount of structure
-can make it easier for audiences to follow the flow of a presentation.
+the result before rendering a full deck.
+
+By default, untagged slides inherit the most recent section, and
+`data-roadmap="none"` can be used to hide the roadmap on a specific
+slide. This small amount of structure can make it easier for audiences
+to follow the flow of a presentation.
