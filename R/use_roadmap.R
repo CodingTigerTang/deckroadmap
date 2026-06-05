@@ -14,6 +14,9 @@
 #'   progress style.
 #' @param todo_bg_color CSS background color for upcoming sections in
 #'   progress style.
+#' @param inherit_tags Logical; if `TRUE`, untagged slides inherit the most
+#'   recent `data-roadmap` value. Use `data-roadmap="none"` on a slide to hide
+#'   the roadmap entirely for that slide.
 #'
 #' @return An HTML tag with attached dependencies.
 #' 
@@ -49,9 +52,11 @@ use_roadmap <- function(
     todo_color = NULL,
     active_bg_color = NULL,
     done_bg_color = NULL,
-    todo_bg_color = NULL
+    todo_bg_color = NULL,
+    inherit_tags = TRUE
 ) {
   stopifnot(is.character(sections), length(sections) >= 2)
+  stopifnot(is.logical(inherit_tags), length(inherit_tags) == 1, !is.na(inherit_tags))
   
   style <- match.arg(style)
   
