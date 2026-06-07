@@ -1,13 +1,13 @@
 # deckroadmap news
 
-## deckroadmap 0.1.5.9000
+## deckroadmap 0.1.5
 
-- Added support for inherited `data-roadmap` tags so untagged slides can inherit the most recent section by default.
+- Added support for inherited `data-roadmap` tags so untagged slides inherit the most recent section by default.
 - Added support for `data-roadmap="none"` to hide the roadmap on a specific slide.
 - Updated README, examples, and vignette to reflect the new slide-tagging behavior.
 - Improved documentation around section tagging and roadmap-free slides.
 
-# deckroadmap 0.1.4
+## deckroadmap 0.1.4
 
 - Initial CRAN release.
 - Added section-aware roadmap footers for 'Reveal.js' slides.
