@@ -124,8 +124,10 @@ you do not want the roadmap to appear.
 
 Full working examples are included in the `examples/` folder:
 
-- [Quarto demo](examples/quarto-demo.qmd)
-- [R Markdown demo](examples/rmarkdown-demo.Rmd)
+- [Quarto
+  demo](https://github.com/CodingTigerTang/deckroadmap/blob/main/examples/quarto-demo.qmd)
+- [R Markdown
+  demo](https://github.com/CodingTigerTang/deckroadmap/blob/main/examples/rmarkdown-demo.rmd)
 
 These show complete Reveal.js slide documents for Quarto and R Markdown.
 
